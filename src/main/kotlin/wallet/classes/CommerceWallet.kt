@@ -16,7 +16,7 @@ class CommerceWallet(private val owner: String, private var balance: Double) : I
         }
     }
 
-    fun getWalletOwner() : String {
+    override fun getWalletOwner() : String {
         return owner
     }
 
@@ -41,6 +41,6 @@ class CommerceWallet(private val owner: String, private var balance: Double) : I
     }
 
     override fun getLimit(): Int {
-        TODO("Not yet implemented")
+        return limit;
     }
 }

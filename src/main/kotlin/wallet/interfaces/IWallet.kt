@@ -8,6 +8,8 @@ import wallet.enums.WalletState
  */
 interface IWallet {
     val ownerName: String
+
+    fun getWalletOwner(): String
     fun receiveFund(source : IWallet, amount: Double): Double
 
     fun sendFund(destination : IWallet, amount: Double): Double

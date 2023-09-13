@@ -4,16 +4,29 @@ import bank.CommercialBank
 import misc.Reviewer
 import misc.ReviewerRole
 import wallet.classes.CommerceWallet
+import wallet.classes.MerchantWallet
 import wallet.interfaces.IWallet
 
 fun main() {
 //    kotlinDataTypes()
-//    workingWithClasses()
+    workingWithClasses()
 //    workingWithDataClasses()
 
-//    val commerceWallets = listOf(
-//        CommerceWallet("User1", 100.0),
-//        CommerceWallet("User2", 100.0))
+    val commerceWallets = arrayOf(
+        CommerceWallet("User1", 10.0),
+        CommerceWallet("User2", 100.0),
+        CommerceWallet("User3", 40.0))
+
+    findBigBoys(*commerceWallets)
+
+}
+
+fun findBigBoys(vararg wallets : CommerceWallet) {
+    val bigBoys = wallets.filter { it.getBalance() >= 100 }
+
+    bigBoys.forEach{
+        println("${it.getWalletOwner()} is a bigboy with balance ${it.getBalance()}")
+    }
 }
 
 fun getLoan(amount: Double) : Double {
@@ -65,6 +78,10 @@ fun workingWithClasses() {
     println("Wallet state is ${commerceWallet.getWalletState()}")
     commerceWallet.printUserBalance()
 
+    printBreak("Merchant Wallet")
+    val merchantWallet = MerchantWallet("Shoprite", 100000000.0)
+    println("Wallet state is ${merchantWallet.getWalletState()}")
+
     printBreak("Commerce Wallet Via Interface Type")
     val cw : IWallet = CommerceWallet("Olamide", 1000.00)
     /** Next statement will return an error because we specified type as IWallet
@@ -72,7 +89,7 @@ fun workingWithClasses() {
 //    println(cw.printUserBalance())
     println("${cw.ownerName} has a balance of ${cw.getBalance()}")
     println("Wallet state is ${cw.getWalletState()}")
-
+//
     printBreak("Create Apex Bank")
     val ab : Bank = ApexBank()
     println(ab.printName())
